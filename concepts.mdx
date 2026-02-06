@@ -26,6 +26,48 @@ This page is an example. Replace every concept with the real terms your product 
   </Card>
 </Columns>
 
+## MCP server (Model Context Protocol)
+
+An MCP server is a service that exposes tools, data resources, or reusable prompts to MCP clients (for example, an AI application or agent) over the Model Context Protocol. The server implements the protocol so that clients can discover available capabilities and invoke them in a standardized way.
+
+### When to use an MCP server
+
+Use an MCP server when you want to:
+
+- Centralize integrations with external systems and APIs.
+- Isolate and protect credentials away from the client environment.
+- Make capabilities discoverable through a consistent protocol and schema.
+- Standardize how tools are described, called, and observed across clients.
+
+### Core responsibilities
+
+An MCP server typically handles:
+
+- Capability discovery and metadata for tools and resources.
+- Request routing and execution for tool or resource calls.
+- Input and output validation against defined schemas.
+- Authentication and authorization for client access.
+- Observability, logging, and metrics for calls.
+- Rate limiting and other protective controls.
+
+### Example request flow
+
+1. An MCP client connects to the MCP server using the protocol transport.
+2. The client discovers available tools or resources exposed by the server.
+3. The client selects a tool and sends a request with structured inputs.
+4. The server validates the request, executes the underlying integration, and gathers results.
+5. The server returns a structured response for the client to use in downstream reasoning or user output.
+
+<Callout kind="tip">
+For security, treat the MCP server as a privileged integration layer and apply best practices such as:
+
+- Least-privilege access for downstream systems and APIs.
+- Centralized secrets management instead of embedding credentials in clients.
+- Auditing and logging of tool usage and access decisions.
+- Network boundaries and isolation to limit blast radius if a client is compromised.
+
+</Callout>
+
 ## Navigation shape (sample)
 
 ```json
